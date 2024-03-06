@@ -11,8 +11,6 @@ async function getApi(event){
     let answer = await fetch(weather)
     let data = await answer.json()
 
-    console.log(data)
-
     let lat = data[0].lat
     let lon = data[0].lon
 
@@ -64,7 +62,7 @@ function predicted() {
     }
     
     let temp = document.createElement('h3')
-    temp.textContent = `Temperature ${fiveData.list[i].main.temp}F`
+    temp.textContent = `Temperature ${fiveData.list[i].main.temp}K`
     let humidity = document.createElement('h3')
     humidity.textContent = `Humidity: ${fiveData.list[i].main.humidity}`
     let wind = document.createElement('h3')
@@ -95,7 +93,7 @@ function now() {
     }
     
     let temp = document.createElement('h3')
-    temp.textContent = `Temperature ${todayData.main.temp}F`
+    temp.textContent = `Temperature ${todayData.main.temp}K`
     let humidity = document.createElement('h3')
     humidity.textContent = `Humidity: ${todayData.main.humidity}`
     let wind = document.createElement('h3')
