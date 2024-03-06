@@ -51,6 +51,18 @@ function predicted() {
 
     let dates = document.createElement('h2')
     dates.textContent = `Date: ${fiveData.list[i].dt_txt}`
+
+    let weatherSymbol = document.createElement('h2')
+    if (fiveData.list[i].weather[0].main === 'Clouds'){
+        weatherSymbol.textContent = '☁'
+    }else if (fiveData.list[i].weather[0].main === "Clear"){
+        weatherSymbol.textContent = '☀'
+    }else if (fiveData.list[i].weather[0].main === "Rain"){
+        weatherSymbol.textContent = '🌧'
+    }else if (fiveData.list[i].weather[0].main === "Snow"){
+        weatherSymbol.textContent = '🌨'
+    }
+    
     let temp = document.createElement('h3')
     temp.textContent = `Temperature ${fiveData.list[i].main.temp}F`
     let humidity = document.createElement('h3')
@@ -58,7 +70,7 @@ function predicted() {
     let wind = document.createElement('h3')
     wind.textContent = `Wind: ${fiveData.list[i].wind.speed}`
 
-    document.querySelector('.card').append(dates, temp, humidity, wind)
+    document.querySelector('.card').append(dates, temp, humidity, wind, weatherSymbol)
    
     }
 }
@@ -71,6 +83,17 @@ function now() {
 
     let dates = document.createElement('h2')
     dates.textContent = "Today's Weather"
+    let weatherSymbol = document.createElement('h2')
+    if (todayData.weather[0].main === "Clouds"){
+        weatherSymbol.textContent = '☁'
+    }else if (todayData.weather[0].main === "Clear"){
+        weatherSymbol.textContent = '☀'
+    }else if (todayData.weather[0].main === "Rain"){
+        weatherSymbol.textContent = '🌧'
+    }else if (todayData.weather[0].main === "Snow"){
+        weatherSymbol.textContent = '🌨'
+    }
+    
     let temp = document.createElement('h3')
     temp.textContent = `Temperature ${todayData.main.temp}F`
     let humidity = document.createElement('h3')
@@ -78,6 +101,6 @@ function now() {
     let wind = document.createElement('h3')
     wind.textContent = `Wind: ${todayData.wind.speed}`
 
-    document.querySelector('.card').append(dates, temp, humidity, wind)
+    document.querySelector('.card').append(dates, temp, humidity, wind, weatherSymbol)
 }
 
