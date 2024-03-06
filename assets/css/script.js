@@ -19,7 +19,7 @@ async function getApi(event){
     console.log(lat)
     console.log(lon)
 
-    let today = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=a4d20a728b63e7469a525e2ba3e247e1`
+    let today = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a4d20a728b63e7469a525e2ba3e247e1`
     let forecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=a4d20a728b63e7469a525e2ba3e247e1`
 
     let todays = await fetch(today)
@@ -31,72 +31,53 @@ async function getApi(event){
     let five = await future.json()
     console.log(five)
     fiveData = five
+   
+    predicted()
+    now()
 }
 
 const search = document.querySelector('#button')
 search.addEventListener('click', getApi)
 
-document.addEventListener('click', function(event){
-    idName = event.target.id
-
-})
-function weatherCard() {
-
+function predicted() {
     for (i = 3; i < fiveData.list.length; i+=8){
 
     
 
-    let weatherCards = document.createElement('h3')
-    weatherCards.setAttribute('class',)
+    let weatherCards = document.createElement('section')
+    weatherCards.setAttribute('class','card' )
+    document.querySelector('#predicted').appendChild(weatherCards)
 
-    //generates the word cost I put this here so the word "cost" sits about the actuall number
-    //(there is probably a better way to do this)
-    let costText = document.createElement('h4')
-    costText.textContent = `Cost:`
 
-    //generates the cost in credits
-    let starshipCost = document.createElement('h4')
-    starshipCost.textContent = `${searchedData.results[i].cost_in_credits} Credits`
+    let dates = document.createElement('h2')
+    dates.textContent = `Date: ${fiveData.list[i].dt_txt}`
+    let temp = document.createElement('h3')
+    temp.textContent = `Temperature ${fiveData.list[i].main.temp}F`
+    let humidity = document.createElement('h3')
+    humidity.textContent = `Humidity: ${fiveData.list[i].main.humidity}`
+    let wind = document.createElement('h3')
+    wind.textContent = `Wind: ${fiveData.list[i].wind.speed}`
+
+    document.querySelector('.card').append(dates, temp, humidity, wind)
+   
     }
 }
 
-
-// function weatherCard() {
-//     let taskCard = $('<div>')
-//     taskCard.addClass('card project-card draggable my-3')
-//     taskCard.attr('data-project-id' , task.id)
-    
-    
-   
-    
-//     const title = $('<h3>')
-//     title.addClass('card-header h4')
-//     title.text(task.title)
-   
-//     const body = $('<div>')
-//     body.addClass = $('card-body')
-    
-//     const dueDate = $('<p>')
-//     dueDate.addClass('card-text')
-//     dueDate.text(task.dueDate)
-  
-    
-//     const desc =$('<p>')
-//     desc.addClass('card-text')
-//     desc.text(task.desc)
-
-    
-//   const cardDeleteBtn = $('<button>')
-//   cardDeleteBtn.addClass('btn btn-danger delete')
-//   cardDeleteBtn.text('Delete')
-//   cardDeleteBtn.attr('data-project-id' , task.id)
+function now() {
+    let weatherCards = document.createElement('section')
+    weatherCards.setAttribute('class','card' )
+    document.querySelector('#now').appendChild(weatherCards)
 
 
+    let dates = document.createElement('h2')
+    dates.textContent = "Today's Weather"
+    let temp = document.createElement('h3')
+    temp.textContent = `Temperature ${todayData.main.temp}F`
+    let humidity = document.createElement('h3')
+    humidity.textContent = `Humidity: ${todayData.main.humidity}`
+    let wind = document.createElement('h3')
+    wind.textContent = `Wind: ${todayData.wind.speed}`
 
-
-
-
-
-
-// `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=a4d20a728b63e7469a525e2ba3e247e1`
+    document.querySelector('.card').append(dates, temp, humidity, wind)
+}
 
