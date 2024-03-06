@@ -17,8 +17,8 @@ async function getApi(event){
     console.log(lat)
     console.log(lon)
 
-    let today = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a4d20a728b63e7469a525e2ba3e247e1`
-    let forecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=a4d20a728b63e7469a525e2ba3e247e1`
+    let today = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a4d20a728b63e7469a525e2ba3e247e1`
+    let forecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=a4d20a728b63e7469a525e2ba3e247e1`
 
     let todays = await fetch(today)
     let one = await todays.json()
